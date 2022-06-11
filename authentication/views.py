@@ -123,11 +123,11 @@ def signin(request):
             login(request, user)
             fname = user.first_name
             # messages.success(request, "Logged In Sucessfully!!")
-            return HttpResponse(JsonResponse({"fname":request.POST.get('pass1')}))
+            return HttpResponse(JsonResponse({"Status":'success'}))
       #  else:
      #       messages.error(request, "Bad Credentials!!")
       #      return redirect('home')
-    return HttpResponse(JsonResponse({"fname":request.POST.get('pass1')}))
+    return HttpResponse(JsonResponse({"Status":'failure'}))
    # return render(request, "authentication/signin.html")
 
 
