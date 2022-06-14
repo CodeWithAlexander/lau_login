@@ -20,9 +20,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+@csrf_exempt
 def home(request):
     return render(request, "authentication/index.html")
-
+@csrf_exempt
 def signup(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -91,7 +92,7 @@ def signup(request):
         
     return render(request, "authentication/signup.html")
 
-
+@csrf_exempt
 def activate(request,uidb64,token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -123,7 +124,6 @@ def signin(request):
             login(request, user)
             fname = user.first_name
             # messages.success(request, "Logged In Sucessfully!!")
-            redirect('/dashboard')
             return HttpResponse(JsonResponse({"username":username}))
       #  else:
      #       messages.error(request, "Bad Credentials!!")
@@ -131,7 +131,7 @@ def signin(request):
     return HttpResponse(JsonResponse({"Status":'failure'}))
    # return render(request, "authentication/signin.html")
 
-
+@csrf_exempt
 def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!!")
