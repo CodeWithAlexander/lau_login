@@ -56,7 +56,7 @@ def signup(request):
         # myuser.is_active = False
         myuser.is_active = False
         myuser.save()
-                
+
         # Welcome Email
         subject = "Welcome toCiatek- Django Login!!"
         message = "Hello " + myuser.first_name + "!! \n" + "Welcome to Ciatek!! \nThank you for visiting our website\n. We have also sent you a confirmation email, please confirm your email address. \n\nThanking You\nAnubhav Madhav"        
@@ -99,10 +99,9 @@ def activate(request,uidb64,token):
         # user.profile.signup_confirmation = True
         myuser.save()
         login(request,myuser)
-        messages.success(request, "Your Account has been activated!!")
-        return redirect('signin')
+        return HttpResponse("Your Account has been activated!")
     else:
-        return render(request,'activation_failed.html')
+        return HttpResponse("An error has occured")
 
 # Exempt the view from CSRF checks
 
